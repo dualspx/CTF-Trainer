@@ -1,0 +1,17 @@
+GET http://localhost:3000/test
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2IyYzMyMzg1NmM5Y2IwOWVkOTM5ZWQiLCJpYXQiOjE2NzI2NTk3NDd9.u5ZCYmvL7eST4tAeD4ug2UXLB_nSK_UXOutC8tsa6i4
+
+
+###
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "samad@gmail.com",
+    "password":"samadwiwi"
+}
+
+###
+
+GET http://localhost:3000/main_menu
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2IyYzMyMzg1NmM5Y2IwOWVkOTM5ZWQiLCJpYXQiOjE2NzI2NTk3NDd9.u5ZCYmvL7eST4tAeD4ug2UXLB_nSK_UXOutC8tsa6i4
