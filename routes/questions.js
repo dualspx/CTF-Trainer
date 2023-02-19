@@ -18,7 +18,7 @@ const uri = 'mongodb://localhost:27017/CTFLearn'
 express().use(cookieParser())
 const Grid = require('gridfs-stream');
 const conn = mongoose.createConnection(uri, { useNewUrlParser: true });
-
+const flash = require('connect-flash');
 let gfs,gridfsBucket
 
 mongoose.connection.once('open', () => {
@@ -59,6 +59,8 @@ router.post('/create',upload.single('file'), async(req,res) => {
         const newQuestion = Question({
             title: req.body.title,
             question: req.body.question,
+            type: req.body.type,
+            difficulty: req.body.difficulty,
             file: req.file,
             solve: false,
             clue: req.body.clue,
@@ -126,23 +128,55 @@ router.get('/download/:filename',(req,res) => {
   }
 })
 
-router.post('/submit_answer/:id', async(req,res) => {
+router.post('/submit_answer/:id',authenticateToken, async(req,res) => {
   const id = req.params.id;
   const answer = req.body.answer;
-
+  const name = req.name
+  const uid = req.id
+  console.log("solvers: "+uid)
   try {
     const question = await Question.findById(id);
-
+    console.log("Marks: "+question.marks)
     if (!question) {
       return res.status(404).send({ message: 'Question not found' });
     }
 
     if (question.answer === answer) {
+      const user = await User.findById(uid)
       question.solve = true;
+      question.solvers.push(name);
+      console.log("question type:"+question.type)
+      console.log("question mark:"+question.marks)
+      if(question.type == 'reverse_engineering'){
+        user.solved.reverse_engineer += 1
+        user.score.reverse_engineer += question.marks
+        await user.save()
+      }
+      else if(question.type == 'web'){
+        user.solved.web += 1
+        user.score.web += question.marks
+        await user.save()
+      }
+      else if(question.type == 'cryptography'){
+        user.solved.cryptography += 1
+        user.score.cryptography += question.marks
+        await user.save()
+      }
+      else if(question.type == 'forensics'){
+        user.solved.forensics += 1
+        user.score.forensics += question.marks
+        await user.save()
+      }
+      else{
+        res.send("An error occured!").status(500)
+      }
+
       await question.save();
-      return res.status(200).render('quests',{question:question})
+      req.flash('message','correct')
+      return res.status(200).redirect('/quests')
     } else {
-      return res.render('quests.ejs',{question:question})
+      req.flash('message','not correct')
+      return res.redirect('/quests')
     }
   } catch (error) {
     res.status(500).send(error);
@@ -158,15 +192,15 @@ async function authenticateToken( req, res, next) {
   }
   try {
     const data = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-		console.log(token)
+		// console.log(data.data.username)
     // Almost done
-		req.name = data.name;
+    req.name = data.data.name
+		req.id = data.data._id;
     // req.userRole = data.role;
     return next();
   } catch {
     return res.sendStatus(403);
   }
 }  
-
 
 module.exports = router

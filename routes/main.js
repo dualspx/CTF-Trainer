@@ -14,15 +14,14 @@ router.get('/', (req,res) =>{
 })
 
 router.get('/register',(req,res)=> {
-    res.render('register.ejs')
+    res.render('register1.ejs')
 })
 
 router.post('/register',(req,res)=>{
     try{
         const newUser = User({
-            username:req.body.nameRegister,
-            email:req.body.emailRegister,
-            password: req.body.passwordRegister,
+            username:req.body.username,
+            password: req.body.password,
         })
         newUser.save((error) => {
             if (error) {
@@ -78,10 +77,6 @@ router.post('/login', (req,res) =>{
 
 router.get('/about', (req,res)=> {
   res.render('about.ejs')
-})
-
-router.get('/hackerboard', (req,res) => {
-  res.render('hackerboard.ejs')
 })
 
 

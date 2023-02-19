@@ -52,7 +52,7 @@
 }
 
 body {
-    /* background-image: url(../images/bg.png); */
+    background-image: url(../images/bg.png);
     background-position: right;
     background-size: cover;
     background-repeat: no-repeat;

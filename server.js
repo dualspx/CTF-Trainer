@@ -73,7 +73,10 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname,'/public')))
-
+app.use(function(req, res, next){
+  res.locals.message = req.flash();
+  next();
+});
 app.use('/', main) //for unregistered user
 app.use('/', index) //for registered user
 
