@@ -118,6 +118,7 @@
                                     </div>
                                     <% if(datas.question[i].solve == false){ %>
                                         <div class="input-group mt-3">
+                                            <h1>tibe<%=datas.question[i].marks %></h1>
                                             <form method="POST" action="/submit_answer/<%=datas.question[i]._id%>" >
                                                 <input type="text" name="answer" class="form-control" placeholder="CTFLearn{flag_goes_here}" aria-label="Enter Flag" aria-describedby="basic-addon2" required>
                                                 <div class="input-group-append">

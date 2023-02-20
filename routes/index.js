@@ -32,14 +32,14 @@ router.get('/quests', authenticateToken,(req,res) => {
     if(err) return res.status(403).send(err)
 
     else{
-        // for(var i=0; i<data.length; i++){
-        //     console.log("data",data[i].solve)
-        //     return res.render('quests', {question: data})
-        // }
+        for(var i=0; i<data.length; i++){
+            console.log("data",data[i].solvers)
+            // return res.render('quests', {question: data})
+        }
         // console.log(data)
         // console.log(data)
-        
-        return res.render('quests', {datas:{user: uid, question: data}})
+        console.log("Solvers "+data[0])
+        return res.render('quests', {datas:{user: uid, name:name, question: data}})
     }
 }); 
 })

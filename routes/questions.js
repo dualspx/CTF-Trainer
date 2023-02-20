@@ -9,10 +9,8 @@ const { query } = require('express');
 const cookieParser = require('cookie-parser');
 const mime = require('mime')
 const path = require('path')
-// const express = require('express')
 const multer = require('multer')
 const {GridFsStorage} = require('multer-gridfs-storage')
-// var upload = require('../middleware/upload')
 var Question = require('../models/questions')
 const uri = 'mongodb://localhost:27017/CTFLearn'
 express().use(cookieParser())
@@ -67,9 +65,6 @@ router.post('/create',upload.single('file'), async(req,res) => {
             answer: req.body.answer,
             marks: req.body.marks
         })
-        // if(req.body.file){
-        //   newQuestion.file = req.file
-        // }
         newQuestion.save((err) =>{
             if(err){
                 return res.json(err)
