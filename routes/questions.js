@@ -12,7 +12,7 @@ const path = require('path')
 const multer = require('multer')
 const {GridFsStorage} = require('multer-gridfs-storage')
 var Question = require('../models/questions')
-const uri = 'mongodb://localhost:27017/CTFLearn'
+const uri = 'mongodb+srv://doadmin:U10AzWHN95l238Q7@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
 express().use(cookieParser())
 const Grid = require('gridfs-stream');
 const conn = mongoose.createConnection(uri, { useNewUrlParser: true });
@@ -128,7 +128,7 @@ router.post('/submit_answer/:id',authenticateToken, async(req,res) => {
   const answer = req.body.answer;
   const name = req.name
   const uid = req.id
-  console.log("solvers: "+uid)
+  console.log("solvers: "+name)
   try {
     const question = await Question.findById(id);
     console.log("Marks: "+question.marks)
@@ -192,6 +192,7 @@ async function authenticateToken( req, res, next) {
     req.name = data.data.name
 		req.id = data.data._id;
     // req.userRole = data.role;
+    console.log(req.name)
     return next();
   } catch {
     return res.sendStatus(403);

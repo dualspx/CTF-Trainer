@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const uri = 'mongodb://localhost:27017/CTFLearn'
+const uri = 'mongodb+srv://doadmin:U10AzWHN95l238Q7@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
 const express =  require('express')
 const app = express();
 const flash = require('express-flash')

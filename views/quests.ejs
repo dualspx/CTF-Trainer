@@ -92,7 +92,7 @@
                                     <p>
                                         Answer format: CTFLearn{flag_goes_here}
                                     </p>       
-                                    <a target="_blank" href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
+                                    <a href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
                                     <a href="#m<%=i%>" data-toggle="modal" data-target="#m<%=i%>" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
                                     <div class="input-group mt-3">
                                         <div class="custom-control custom-radio">
@@ -118,7 +118,7 @@
                                     </div>
                                     <% if(datas.question[i].solve == false){ %>
                                         <div class="input-group mt-3">
-                                            <h1>tibe<%=datas.question[i].marks %></h1>
+                                            
                                             <form method="POST" action="/submit_answer/<%=datas.question[i]._id%>" >
                                                 <input type="text" name="answer" class="form-control" placeholder="CTFLearn{flag_goes_here}" aria-label="Enter Flag" aria-describedby="basic-addon2" required>
                                                 <div class="input-group-append">
