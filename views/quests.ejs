@@ -68,7 +68,16 @@
                                         Answer format: CTFLearn{flag_goes_here}
                                     </p>       
                                     <a target="_blank" href="/download/<%=question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
-                                    <a href="#hint" data-toggle="modal" data-target="#hint" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
+                                    <a href="#hint" data-toggle="modal" data-target="#m<%=i%>" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
+                                    <div class="modal fade target" id="m<%=i%>"  role="dialog" aria-labelledby="hint label" style="display: none;" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <%= question[i].clue %>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="input-group mt-3">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio1_p1" name="customRadio_p1" class="custom-control-input">
@@ -141,6 +150,7 @@
                                 </p>
                                 <a target="_blank" href="#!" class="btn btn-outline-secondary btn-shadow"><span class="fa fa-download mr-2"></span>Download</a>
                                 <a href="#hint" data-toggle="modal" data-target="#hint" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
+                                
                                 <div class="input-group mt-3">
                                     <div class="custom-control custom-radio">
                                         <input type="radio" id="customRadio1_p2" name="customRadio_p2" class="custom-control-input">
@@ -414,15 +424,7 @@
                 </div>
             </div>
         </div>
-        <div class="modal fade" id="hint" tabindex="-1" role="dialog" aria-labelledby="hint label" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        HINT GOES HERE
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <script>
             var dataset = [
                 [41, 42, 43, 44, 45, 0], // keep the zero here

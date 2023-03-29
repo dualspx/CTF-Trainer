@@ -140,9 +140,9 @@ router.post('/submit_answer/:id', async(req,res) => {
     if (question.answer === answer) {
       question.solve = true;
       await question.save();
-      return res.status(200).render('quests',{question:question})
+      return res.status(200).render('quests')
     } else {
-      return res.render('quests.ejs',{question:question})
+      return res.render('quests.ejs')
     }
   } catch (error) {
     res.status(500).send(error);
