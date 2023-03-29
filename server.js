@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const uri = 'mongodb://localhost:27017/CTFLearn'
+const uri = 'mongodb+srv://doadmin:Qh3XDw29t7S5168l@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
 const express =  require('express')
 const app = express();
 const flash = require('express-flash')
@@ -73,7 +73,10 @@ app.use(express.json())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname,'/public')))
-
+app.use(function(req, res, next){
+  res.locals.message = req.flash();
+  next();
+});
 app.use('/', main) //for unregistered user
 app.use('/', index) //for registered user
 

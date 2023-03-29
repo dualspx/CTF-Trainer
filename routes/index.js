@@ -11,39 +11,35 @@ const cookieParser = require('cookie-parser');
 express().use(cookieParser())
 
 
-router.get('/main',authenticateToken, function(req,res) {
-	const token = req.cookies.access_token;
-	console.log('token:',token)
-		jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, function(err,data) {
-			if(err){
-				res.status(403).send('Not authorized')
-			}else{
-        res.render('main_menu.ejs',{data: data.data});
-			}
-		})
-})
+// router.get('/main', function(req,res) {
+// 	res.render('index.ejs')
+// })
 
-router.get('/main_menu',authenticateToken,(req,res) => {
-    res.render('main_menu')
-})
+// router.get('/main_menu',authenticateToken,(req,res) => {
+//     res.render('main_menu')
+// })
 
 router.get('/app',(req,res) => {
     res.render('app')
 })
 
 router.get('/quests', authenticateToken,(req,res) => {
+  const name = req.name
+  const uid = req.id
+  
+  // console.log(`Hello, ${name}!`)
   Question.find({}, (err,data) => {
     if(err) return res.status(403).send(err)
 
     else{
-        // for(var i=0; i<data.length; i++){
-        //     console.log("data",data[i].solve)
-        //     return res.render('quests', {question: data})
-        // }
+        for(var i=0; i<data.length; i++){
+            console.log("data",data[i].solvers)
+            // return res.render('quests', {question: data})
+        }
         // console.log(data)
-        console.log(data)
-        
-        return res.render('quests', {question: data})
+        // console.log(data)
+        console.log("Solvers "+data[0])
+        return res.render('quests', {datas:{user: uid, name:name, question: data}})
     }
 }); 
 })
@@ -62,9 +58,10 @@ async function authenticateToken( req, res, next) {
   }
   try {
     const data = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-		console.log(token)
+		console.log(data.data.username)
     // Almost done
-		req.name = data.name;
+		req.name = data.data.username;
+    req.id = data.data._id;
     // req.userRole = data.role;
     return next();
   } catch {

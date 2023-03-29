@@ -9,16 +9,14 @@ const { query } = require('express');
 const cookieParser = require('cookie-parser');
 const mime = require('mime')
 const path = require('path')
-// const express = require('express')
 const multer = require('multer')
 const {GridFsStorage} = require('multer-gridfs-storage')
-// var upload = require('../middleware/upload')
 var Question = require('../models/questions')
-const uri = 'mongodb://localhost:27017/CTFLearn'
+const uri = 'mongodb+srv://doadmin:Qh3XDw29t7S5168l@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
 express().use(cookieParser())
 const Grid = require('gridfs-stream');
 const conn = mongoose.createConnection(uri, { useNewUrlParser: true });
-
+const flash = require('connect-flash');
 let gfs,gridfsBucket
 
 mongoose.connection.once('open', () => {
@@ -59,15 +57,14 @@ router.post('/create',upload.single('file'), async(req,res) => {
         const newQuestion = Question({
             title: req.body.title,
             question: req.body.question,
+            type: req.body.type,
+            difficulty: req.body.difficulty,
             file: req.file,
             solve: false,
             clue: req.body.clue,
             answer: req.body.answer,
             marks: req.body.marks
         })
-        // if(req.body.file){
-        //   newQuestion.file = req.file
-        // }
         newQuestion.save((err) =>{
             if(err){
                 return res.json(err)
@@ -126,23 +123,55 @@ router.get('/download/:filename',(req,res) => {
   }
 })
 
-router.post('/submit_answer/:id', async(req,res) => {
+router.post('/submit_answer/:id',authenticateToken, async(req,res) => {
   const id = req.params.id;
   const answer = req.body.answer;
-
+  const name = req.name
+  const uid = req.id
+  console.log("solvers: "+name)
   try {
     const question = await Question.findById(id);
-
+    console.log("Marks: "+question.marks)
     if (!question) {
       return res.status(404).send({ message: 'Question not found' });
     }
 
     if (question.answer === answer) {
+      const user = await User.findById(uid)
       question.solve = true;
+      question.solvers.push(name);
+      console.log("question type:"+question.type)
+      console.log("question mark:"+question.marks)
+      if(question.type == 'reverse_engineering'){
+        user.solved.reverse_engineer += 1
+        user.score.reverse_engineer += question.marks
+        await user.save()
+      }
+      else if(question.type == 'web'){
+        user.solved.web += 1
+        user.score.web += question.marks
+        await user.save()
+      }
+      else if(question.type == 'cryptography'){
+        user.solved.cryptography += 1
+        user.score.cryptography += question.marks
+        await user.save()
+      }
+      else if(question.type == 'forensic'){
+        user.solved.forensics += 1
+        user.score.forensics += question.marks
+        await user.save()
+      }
+      else{
+        res.send("An error occured!").status(500)
+      }
+
       await question.save();
-      return res.status(200).render('quests')
+      req.flash('message','correct')
+      return res.status(200).redirect('/quests')
     } else {
-      return res.render('quests.ejs')
+      req.flash('message','not correct')
+      return res.redirect('/quests')
     }
   } catch (error) {
     res.status(500).send(error);
@@ -158,15 +187,16 @@ async function authenticateToken( req, res, next) {
   }
   try {
     const data = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
-		console.log(token)
+		// console.log(data.data.username)
     // Almost done
-		req.name = data.name;
+    req.name = data.data.name
+		req.id = data.data._id;
     // req.userRole = data.role;
+    console.log(req.name)
     return next();
   } catch {
     return res.sendStatus(403);
   }
 }  
-
 
 module.exports = router

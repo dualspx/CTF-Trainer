@@ -10,17 +10,18 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="css/bootstrap4-neon-glow.min.css">
+    <link rel="stylesheet" href="/css/bootstrap4-neon-glow.min.css">
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link rel='stylesheet' href='//cdn.jsdelivr.net/font-hack/2.020/css/hack.min.css'>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
 </head>
 
 <body>
+    
     <div class="navbar-dark text-white">
         <div class="container">
             <nav class="navbar px-0 py-0 navbar-expand-lg navbar-dark">
@@ -28,7 +29,22 @@
           <span class="navbar-toggler-icon"></span>
         </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <%- include('_headers') %> 
+                    <div class="navbar-nav">
+                                        <a href="/quests" class="pl-md-0 p-3 text-decoration-none text-light">
+                                            <h3 class="bold"><span class="color_danger">CTF</span><span class="color_white">TRAINER</span></h3>
+                                        </a>
+                                    </div>
+                                    <div class="navbar-nav ml-auto">
+                                        <a href="/quests" class="p-3 text-decoration-none text-light bold">Home</a>
+                                        <a href="/about" class="p-3 text-decoration-none text-light bold">About</a>
+                                        <a href="/profile/<%=datas.user%>" class="p-3 text-decoration-none text-light bold">Dashboard</a>
+                                        <!-- <a href="login.ejs" class="p-3 text-decoration-none text-light bold">Login</a> -->
+                                        <a href="/logout" class="p-3 text-decoration-none text-light bold">Logout</a>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
             </nav>
 
@@ -49,24 +65,35 @@
                 <div class="col-md-12">
                     <h4>Challenges</h4>
                 </div>
-                <% for(var i=0; i<question.length; i++){ %>
+                <% for(var i=0; i<datas.question.length; i++){ %>
+                    <div class="modal fade" name="m<%=i%>" id="m<%=i%>"  role="dialog" aria-labelledby="hint label" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered" role="document">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <%=datas.question[i].clue %>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-4 mb-3">
                         <div class="card category_web">
-                            <div class="card-header solved" data-target="#problem_id_1" data-toggle="collapse" aria-expanded="false" aria-controls="problem_id_1">
-                                <%= question[i].title %>  <span class="badge"></span> <span class="badge"><%= question[i].marks %>  points</span>
+                            <div class="card-header solved" data-target="#p<%=i%>" data-toggle="collapse" aria-expanded="false" aria-controls="p<%=i%>">
+                                <%= datas.question[i].title %>  <span class="badge"></span> <span class="badge"><%= datas.question[i].marks %>  points</span>
                             </div>
-                            <div id="problem_id_1" class="collapse card-body">
+                            <div id="p<%=i%>" class="collapse card-body">
                                 <blockquote class="card-blockquote">
                                     <div style="display: flex;">
                                         <br>
-                                        <h6 class="solvers">Solvers: <span class="solver_num">76</span><br>
-                                        <span class="color_danger">Difficulty:</span><%=question[i].difficulty%> </h6>
+                                        <!-- <h6 class="solvers">Solvers: <span class="solver_num">76</span><br> -->
+                                        <br><h6 class="solvers">Question type: <span class="solver_num"><%= datas.question[i].type %></span><br><br>
+                                        <span class="color_danger">Difficulty:</span><%=datas.question[i].difficulty%> </h6>
                                         <div class="pl-2"></div>
                                     </div>
-                                    <p> <%= question[i].question %>  </p>
+                                    <p> <%= datas.question[i].question %>  </p>
                                     <p>
                                         Answer format: CTFLearn{flag_goes_here}
                                     </p>       
+<<<<<<< HEAD
                                     <a target="_blank" href="/download/<%=question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
                                     <a href="#hint" data-toggle="modal" data-target="#m<%=i%>" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
                                     <div class="modal fade target" id="m<%=i%>"  role="dialog" aria-labelledby="hint label" style="display: none;" aria-hidden="true">
@@ -78,6 +105,15 @@
                                             </div>
                                         </div>
                                     </div>
+=======
+                                    <% if(datas.question[i].file != null) {%>
+                                        <a href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
+                                        <% } %>
+                                    <% if(datas.question[i].file != null) {%>
+                                        <a href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
+                                        <% } %>
+                                    <a href="#m<%=i%>" data-toggle="modal" data-target="#m<%=i%>" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
+>>>>>>> edef2b282932331ab5a79a2c103bb715f6ae487a
                                     <div class="input-group mt-3">
                                         <div class="custom-control custom-radio">
                                             <input type="radio" id="customRadio1_p1" name="customRadio_p1" class="custom-control-input">
@@ -100,9 +136,11 @@
                                             <label class="custom-control-label" for="customRadio5_p1">Very Hard</label>
                                         </div>
                                     </div>
-                                    <% if(question[i].solve == false){ %>
+                                    <% if(datas.question[i].solvers.includes(datas.name) == false){ %>
+                                    <% if(datas.question[i].solvers.includes(datas.name) == false){ %>
                                         <div class="input-group mt-3">
-                                            <form method="POST" action="/submit_answer/<%=question[i]._id%>" >
+                                            
+                                            <form method="POST" action="/submit_answer/<%=datas.question[i]._id%>" >
                                                 <input type="text" name="answer" class="form-control" placeholder="CTFLearn{flag_goes_here}" aria-label="Enter Flag" aria-describedby="basic-addon2" required>
                                                 <div class="input-group-append">
                                                 </div>
@@ -111,23 +149,9 @@
                                         </div>
                                         <% }else{%>
                                             <div class="input-group mt-3">
-                                                <form method="POST" action="/submit_answer/<%=question[i]._id%>" >
-                                                    <input type="text" name="answer" class="form-control" placeholder="CTFLearn{flag_goes_here}" aria-label="Enter Flag" aria-describedby="basic-addon2" disabled>
-                                                    <div class="input-group-append">
-                                                    </div>
-                                                    <button id="submit_p1" class="btn btn-outline-secondary" type="submit" disabled>Go!</button>
-                                                </form>
+                                                <button id="submit_p1" class="btn btn-success" type="submit">Already answered!</button>
                                             </div>
                                         <% } %>  
-                                    <!-- <div class="input-group mt-3">
-                                        <form method="POST" action="/submit_answer/<%=question[i]._id%>" >
-                                            <input type="text" name="answer" class="form-control" placeholder="CTFLearn{flag_goes_here}" aria-label="Enter Flag" aria-describedby="basic-addon2" required>
-                                            <div class="input-group-append">
-                                            </div>
-                                            <button id="submit_p1" class="btn btn-outline-secondary" type="submit">Go!</button>
-                                        </form>
-                                        <p></p>
-                                    </div> -->
                                 </blockquote>
                             </div>
                         </div>
@@ -135,6 +159,7 @@
                 <% } %> 
                 
                 
+<<<<<<< HEAD
                 <div class="col-md-4 mb-3">
                     <div class="card category_reversing">
                         <div class="card-header" data-target="#problem_id_2" data-toggle="collapse" aria-expanded="false" aria-controls="problem_id_2">
@@ -406,6 +431,9 @@
                     </div>
                 </div>
             </div>
+=======
+               
+>>>>>>> edef2b282932331ab5a79a2c103bb715f6ae487a
             <div class="row hackerFont justify-content-center mt-5">
                 <div class="col-md-12">
                     Chart Difficulties:
@@ -488,11 +516,30 @@
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-
+        
+        
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.all.min.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.2/dist/sweetalert2.min.css" rel="stylesheet">
+        <script>
+            <% if(message.message == 'correct'){ %>   
+                Swal.fire({
+                title:' <%= message.message %>',
+                text: 'Congratulations!! ',
+                icon: 'success',
+                confirmButtonText: 'Cool'
+                })
+            <% }else if(message.message == 'not correct'){ %>
+                Swal.fire({
+                title:'<%= message.message %>',
+                text: 'Try Again! :)',
+                icon: 'error',
+                confirmButtonText: 'OK'
+                })
+            <% } %>
+        </script>
 </body>
 
 </html>

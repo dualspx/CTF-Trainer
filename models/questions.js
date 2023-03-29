@@ -5,13 +5,21 @@ const questionSchema = new mongoose.Schema({
         type: String,
         require: true
     },
+    'type':{
+        type: String,
+        require: true
+    },
+    'difficulty':{
+        type: String,
+        require: true
+    },
     'question':{
         type: String,
         require: true
     },
     'filename':{
         type: String,
-        require: true
+        
     },
     'file':{
         type: Object,
@@ -35,7 +43,8 @@ const questionSchema = new mongoose.Schema({
     },
     'difficulty':{
         type: String
-    }
+    },
+    'solvers':[String]
 })
 
 const Question = mongoose.model('Question',questionSchema)
