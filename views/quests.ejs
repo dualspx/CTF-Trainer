@@ -96,6 +96,9 @@
                                     <% if(datas.question[i].file != null) {%>
                                         <a href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
                                         <% } %>
+                                    <% if(datas.question[i].file != null) {%>
+                                        <a href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
+                                        <% } %>
                                     <a href="#m<%=i%>" data-toggle="modal" data-target="#m<%=i%>" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
                                     <div class="input-group mt-3">
                                         <div class="custom-control custom-radio">
@@ -120,6 +123,7 @@
                                         </div>
                                     </div>
                                     <% if(datas.question[i].solvers.includes(datas.name) == false){ %>
+                                    <% if(datas.question[i].solvers.includes(datas.name) == false){ %>
                                         <div class="input-group mt-3">
                                             
                                             <form method="POST" action="/submit_answer/<%=datas.question[i]._id%>" >
@@ -141,274 +145,22 @@
                 <% } %> 
                 
                 
-                <div class="col-md-4 mb-3">
-                    <div class="card category_reversing">
-                        <div class="card-header" data-target="#problem_id_2" data-toggle="collapse" aria-expanded="false" aria-controls="problem_id_2">
-                            Find The Easy Pass <span class="badge align-self-end">80 points</span>
-                        </div>
-                        <div id="problem_id_2" class="collapse card-body">
-                            <blockquote class="card-blockquote">
-                                <div style="display: flex;">
-                                    <h6 class="solvers">Solvers: <span class="solver_num">76</span> &nbsp;<span class="color_danger">Difficulty:</span></h6>
-                                    <div class="pl-2"><canvas style="width:80px;height:20px" id="problem_id_2_chart"></canvas></div>
-                                </div>
-                                <p> Can you find the password? Enter the password as flag in the following form: lakshya_CTF{passwordhere}
-                                </p>
-                                <a target="_blank" href="#!" class="btn btn-outline-secondary btn-shadow"><span class="fa fa-download mr-2"></span>Download</a>
-                                <a href="#hint" data-toggle="modal" data-target="#hint" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
-                                <div class="input-group mt-3">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio1_p2" name="customRadio_p2" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio1_p2" aria-required="">Very Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio2_p2" name="customRadio_p2" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2_p2">Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio3_p2" name="customRadio_p2" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio3_p2">Medium</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio4_p2" name="customRadio_p2" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio4_p2">Hard</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio5_p2" name="customRadio_p2" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio5_p2">Very Hard</label>
-                                    </div>
-                                </div>
-                                <div class="input-group mt-3">
-                                    <input type="text" class="form-control" placeholder="Enter Flag" aria-label="Enter Flag" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button id="submit_p2" class="btn btn-outline-secondary" type="button">Go!</button>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-3">
-                    <div class="card category_pwning">
-                        <div class="card-header" data-target="#problem_id_3" data-toggle="collapse" aria-expanded="false" aria-controls="problem_id_3">
-                            Impossible Password <span class="badge align-self-end">80 points</span>
-                        </div>
-                        <div id="problem_id_3" class="collapse card-body">
-                            <blockquote class="card-blockquote">
-                                <div style="display: flex;">
-                                    <h6 class="solvers">Solvers: <span class="solver_num">76</span> &nbsp;<span class="color_danger">Difficulty:</span></h6>
-                                    <div class="pl-2"><canvas style="width:80px;height:20px" id="problem_id_3_chart"></canvas></div>
-                                </div>
-                                <p> Can you find the password? Enter the password as flag in the following form: lakshya_CTF{passwordhere}
-                                </p>
-                                <a target="_blank" href="#!" class="btn btn-outline-secondary btn-shadow"><span class="fa fa-download mr-2"></span>Download</a>
-                                <a href="#hint" data-toggle="modal" data-target="#hint" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
-                                <div class="input-group mt-3">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio1_p3" name="customRadio_p3" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio1_p3" aria-required="">Very Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio2_p3" name="customRadio_p3" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2_p3">Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio3_p3" name="customRadio_p3" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio3_p3">Medium</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio4_p3" name="customRadio_p3" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio4_p3">Hard</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio5_p3" name="customRadio_p3" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio5_p3">Very Hard</label>
-                                    </div>
-                                </div>
-                                <div class="input-group mt-3">
-                                    <input type="text" class="form-control" placeholder="Enter Flag" aria-label="Enter Flag" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button id="submit_p3" class="btn btn-outline-secondary" type="button">Go!</button>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <div class="card category_misc">
-                        <div class="card-header" data-target="#problem_id_4" data-toggle="collapse" aria-expanded="false" aria-controls="problem_id_4">
-                            Find The Secret Flag <span class="badge align-self-end">80 points</span>
-                        </div>
-                        <div id="problem_id_4" class="collapse card-body">
-                            <blockquote class="card-blockquote">
-                                <div style="display: flex;">
-                                    <h6 class="solvers">Solvers: <span class="solver_num">76</span> &nbsp;<span class="color_danger">Difficulty:</span></h6>
-                                    <div class="pl-2"><canvas style="width:80px;height:20px" id="problem_id_4_chart"></canvas></div>
-                                </div>
-                                <p> Can you find the password? Enter the password as flag in the following form: lakshya_CTF{passwordhere}
-                                </p>
-                                <a target="_blank" href="#!" class="btn btn-outline-secondary btn-shadow"><span class="fa fa-download mr-2"></span>Download</a>
-                                <a href="#hint" data-toggle="modal" data-target="#hint" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
-                                <div class="input-group mt-3">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio1_p4" name="customRadio_p4" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio1_p4" aria-required="">Very Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio2_p4" name="customRadio_p4" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2_p4">Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio3_p4" name="customRadio_p4" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio3_p4">Medium</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio4_p4" name="customRadio_p4" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio4_p4">Hard</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio5_p4" name="customRadio_p4" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio5_p4">Very Hard</label>
-                                    </div>
-                                </div>
-                                <div class="input-group mt-3">
-                                    <input type="text" class="form-control" placeholder="Enter Flag" aria-label="Enter Flag" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button id="submit_p4" class="btn btn-outline-secondary" type="button">Go!</button>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <div class="card category_steg">
-                        <div class="card-header" data-target="#problem_id_5" data-toggle="collapse" aria-expanded="false" aria-controls="problem_id_5">
-                            DSYM <span class="badge align-self-end">80 points</span>
-                        </div>
-                        <div id="problem_id_5" class="collapse card-body">
-                            <blockquote class="card-blockquote">
-                                <div style="display: flex;">
-                                    <h6 class="solvers">Solvers: <span class="solver_num">76</span> &nbsp;<span class="color_danger">Difficulty:</span></h6>
-                                    <div class="pl-2"><canvas style="width:80px;height:20px" id="problem_id_5_chart"></canvas></div>
-                                </div>
-                                <p> Can you find the password? Enter the password as flag in the following form: lakshya_CTF{passwordhere}
-                                </p>
-                                <a target="_blank" href="#!" class="btn btn-outline-secondary btn-shadow"><span class="fa fa-download mr-2"></span>Download</a>
-                                <a href="#hint" data-toggle="modal" data-target="#hint" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
-                                <div class="input-group mt-3">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio1_p5" name="customRadio_p5" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio1_p5" aria-required="">Very Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio2_p5" name="customRadio_p5" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2_p5">Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio3_p5" name="customRadio_p5" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio3_p5">Medium</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio4_p5" name="customRadio_p5" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio4_p5">Hard</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio5_p5" name="customRadio_p5" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio5_p5">Very Hard</label>
-                                    </div>
-                                </div>
-                                <div class="input-group mt-3">
-                                    <input type="text" class="form-control" placeholder="Enter Flag" aria-label="Enter Flag" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button id="submit_5p" class="btn btn-outline-secondary" type="button">Go!</button>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <div class="card category_crypt">
-                        <div class="card-header" data-target="#problem_id_6" data-toggle="collapse" aria-expanded="false" aria-controls="problem_id_6">
-                            Headache <span class="badge align-self-end">80 points</span>
-                        </div>
-                        <div id="problem_id_6" class="collapse card-body">
-                            <blockquote class="card-blockquote">
-                                <div style="display: flex;">
-                                    <h6 class="solvers">Solvers: <span class="solver_num">76</span> &nbsp;<span class="color_danger">Difficulty:</span></h6>
-                                    <div class="pl-2"><canvas style="width:80px;height:20px" id="problem_id_6_chart"></canvas></div>
-                                </div>
-                                <p> Can you find the password? Enter the password as flag in the following form: lakshya_CTF{passwordhere}
-                                </p>
-                                <a target="_blank" href="#!" class="btn btn-outline-secondary btn-shadow"><span class="fa fa-download mr-2"></span>Download</a>
-                                <a href="#hint" data-toggle="modal" data-target="#hint" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
-                                <div class="input-group mt-3">
-                                    <div class="custom-control custom-radio">
-                                        <input type="radio" id="customRadio1_p6" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio1_p6" aria-required="">Very Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio2_p6" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio2_p6">Easy</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio3_p6" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio3_p6">Medium</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio4_p6" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio4_p6">Hard</label>
-                                    </div>
-                                    <div class="ht-tm-element custom-control custom-radio">
-                                        <input type="radio" id="customRadio5_p6" name="customRadio" class="custom-control-input">
-                                        <label class="custom-control-label" for="customRadio5_p6">Very Hard</label>
-                                    </div>
-                                </div>
-                                <div class="input-group mt-3">
-                                    <input type="text" class="form-control" placeholder="Enter Flag" aria-label="Enter Flag" aria-describedby="basic-addon2">
-                                    <div class="input-group-append">
-                                        <button id="submit_p6" class="btn btn-outline-secondary" type="button">Go!</button>
-                                    </div>
-                                </div>
-                            </blockquote>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+               
             <div class="row hackerFont justify-content-center mt-5">
                 <div class="col-md-12">
-                    <h4>Machines</h4>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <div class="card category_machine">
-                        <a href="machine.html" class="color_white">
-                            <div class="card-header">
-                                Headache <span class=" ml-4 badge align-self-end">1000 points</span>
-                                <div class="pl-4 machine" style="display: inline-flex;">
-                                    10.10.15.117
-                                    <h6 class=" pl-4 pt-1 solvers">Solvers: <span class="solver_num">76</span> &nbsp;<span class="color_danger">Difficulty:</span></h6>
-                                    <div class="pl-2"><canvas style="width:80px;height:20px" id="problem_id_7_chart"></canvas></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-md-12 mb-3">
-                    <div class="card category_machine">
-                        <a href="machine.html" class="color_white">
-                            <div class="card-header">
-                                CORONA <span class=" ml-4 badge align-self-end">1000 points</span>
-                                <div class="pl-4 machine" style="display: inline-flex;">
-                                    10.10.15.112
-                                    <h6 class=" pl-4 pt-1 solvers">Solvers: <span class="solver_num">76</span> &nbsp;<span class="color_danger">Difficulty:</span></h6>
-                                    <div class="pl-2"><canvas style="width:80px;height:20px" id="problem_id_8_chart"></canvas></div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
+                    Chart Difficulties:
+                    <span style="color:#17b06b">Very Easy,</span>
+                    <span style="color:#17b06b">Easy,</span>
+                    <span style="color:#ffce56">Medium,</span>
+                    <span style="color:#ef121b">Hard,</span>
+                    <span style="color:#ef121b">Very Hard,</span>
+                    <br><br>Challenge Types:
+                    <span class="p-1" style="background-color:#ef121b94">Web</span>
+                    <span class="p-1" style="background-color:#17b06b94">Reversing</span>
+                    <span class="p-1" style="background-color:#f9751594">Steganography</span>
+                    <span class="p-1" style="background-color:#36a2eb94">Pwning</span>
+                    <span class="p-1" style="background-color:#9966FF94">Cryptography</span>
+                    <span class="p-1" style="background-color:#ffce5694">Other</span>
                 </div>
             </div>
         </div>
