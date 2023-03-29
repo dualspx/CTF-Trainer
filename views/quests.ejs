@@ -37,7 +37,7 @@
                                     <div class="navbar-nav ml-auto">
                                         <a href="/quests" class="p-3 text-decoration-none text-light bold">Home</a>
                                         <a href="/about" class="p-3 text-decoration-none text-light bold">About</a>
-                                        <a href="/profile/<%=datas.user%>" class="p-3 text-decoration-none text-light bold">Hackerboard</a>
+                                        <a href="/profile/<%=datas.user%>" class="p-3 text-decoration-none text-light bold">Dashboard</a>
                                         <!-- <a href="login.ejs" class="p-3 text-decoration-none text-light bold">Login</a> -->
                                         <a href="/logout" class="p-3 text-decoration-none text-light bold">Logout</a>
                                     </div>
@@ -84,7 +84,8 @@
                                 <blockquote class="card-blockquote">
                                     <div style="display: flex;">
                                         <br>
-                                        <h6 class="solvers">Solvers: <span class="solver_num">76</span><br>
+                                        <!-- <h6 class="solvers">Solvers: <span class="solver_num">76</span><br> -->
+                                        <br><h6 class="solvers">Question type: <span class="solver_num"><%= datas.question[i].type %></span><br><br>
                                         <span class="color_danger">Difficulty:</span><%=datas.question[i].difficulty%> </h6>
                                         <div class="pl-2"></div>
                                     </div>
@@ -92,7 +93,9 @@
                                     <p>
                                         Answer format: CTFLearn{flag_goes_here}
                                     </p>       
-                                    <a href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
+                                    <% if(datas.question[i].file != null) {%>
+                                        <a href="/download/<%=datas.question[i].file.filename%>" class="btn btn-outline-secondary btn-shadow" download><span class="fa fa-download mr-2"></span>Download</a>
+                                        <% } %>
                                     <a href="#m<%=i%>" data-toggle="modal" data-target="#m<%=i%>" class="btn btn-outline-secondary btn-shadow"><span class="far fa-lightbulb mr-2"></span>Hint</a>
                                     <div class="input-group mt-3">
                                         <div class="custom-control custom-radio">
@@ -116,7 +119,7 @@
                                             <label class="custom-control-label" for="customRadio5_p1">Very Hard</label>
                                         </div>
                                     </div>
-                                    <% if(datas.question[i].solve == false){ %>
+                                    <% if(datas.question[i].solvers.includes(datas.name) == false){ %>
                                         <div class="input-group mt-3">
                                             
                                             <form method="POST" action="/submit_answer/<%=datas.question[i]._id%>" >
@@ -406,23 +409,6 @@
                             </div>
                         </a>
                     </div>
-                </div>
-            </div>
-            <div class="row hackerFont justify-content-center mt-5">
-                <div class="col-md-12">
-                    Chart Difficulties:
-                    <span style="color:#17b06b">Very Easy,</span>
-                    <span style="color:#17b06b">Easy,</span>
-                    <span style="color:#ffce56">Medium,</span>
-                    <span style="color:#ef121b">Hard,</span>
-                    <span style="color:#ef121b">Very Hard,</span>
-                    <br><br>Challenge Types:
-                    <span class="p-1" style="background-color:#ef121b94">Web</span>
-                    <span class="p-1" style="background-color:#17b06b94">Reversing</span>
-                    <span class="p-1" style="background-color:#f9751594">Steganography</span>
-                    <span class="p-1" style="background-color:#36a2eb94">Pwning</span>
-                    <span class="p-1" style="background-color:#9966FF94">Cryptography</span>
-                    <span class="p-1" style="background-color:#ffce5694">Other</span>
                 </div>
             </div>
         </div>

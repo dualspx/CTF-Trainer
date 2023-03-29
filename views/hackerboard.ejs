@@ -17,16 +17,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
     <link rel="stylesheet" href="/css/main.css">
+   
 </head>
 
 <body class="imgloaded">
     <div class="glitch">
-        <div class="glitch__img glitch__img_leaderboard"></div>
-        <div class="glitch__img glitch__img_leaderboard"></div>
-        <div class="glitch__img glitch__img_leaderboard"></div>
-        <div class="glitch__img glitch__img_leaderboard"></div>
-        <div class="glitch__img glitch__img_leaderboard"></div>
-    </div>
+        <div class="glitch__img "></div>
+        <div class="glitch__img "></div>
+        <div class="glitch__img "></div>
+        <div class="glitch__img "></div>
+        <div class="glitch__img "></div>
+    </div>
     <!-- <div class="navbar-dark text-white">
         <div class="container">
             <nav class="navbar px-0 navbar-expand-lg navbar-dark">
@@ -57,7 +58,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
-                    <h1 class="display-1 bold color_white content__title text-center"><span class="color_danger">HACKER</span>BOARD<span class="vim-caret">&nbsp;</span></h1>
+                    <h1 class="display-1 bold color_white content__title text-center"><span class="color_danger">DASH</span>BOARD<span class="vim-caret">&nbsp;</span></h1>
                     <!-- <p class="text-grey lead text-spacey text-center hackerFont">
                         YOUR RANKED:
                     </p> -->
@@ -76,8 +77,8 @@
                                 <th>#</th>
                                 <th>Type of Challenge</th>
                                 <th># Challenges Solved</th>
-                                <th>Total Time Taken</th>
-                                <th>solved</th>
+                                <!-- <th>Total Time Taken</th> -->
+                                <th>Score</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,28 +86,28 @@
                                 <th scope="row">1</th>
                                 <td>Web</td>
                                 <td><%=data.solved.web%></td>
-                                <td>42:59</td>
+                                <!-- <td>42:59</td> -->
                                 <td><%=data.score.web%></td>
                             </tr>
                             <tr>
                                 <th scope="row">2</th>
                                 <td>Forensics</td>
                                 <td><%=data.solved.forensics%></td>
-                                <td>44:59</td>
+                                <!-- <td>44:59</td> -->
                                 <td><%=data.score.forensics%></td>
                             </tr>
                             <tr>
                                 <th scope="row">3</th>
                                 <td>Cryptography</td>
                                 <td><%=data.solved.cryptography%></td>
-                                <td>40:00</td>
+                                <!-- <td>40:00</td> -->
                                 <td><%=data.score.cryptography%></td>
                             </tr>
                             <tr>
                                 <th scope="row">4</th>
                                 <td>Reverse Engineering</td>
                                 <td><%=data.solved.reverse_engineer%></td>
-                                <td>40:10</td>
+                                <!-- <td>40:10</td> -->
                                 <td><%=data.score.reverse_engineer%></td>
                             </tr>
                         </tbody>
@@ -115,7 +116,6 @@
             </div>
         </div>
     </div>
-
 
 
     <!-- Optional JavaScript -->

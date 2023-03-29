@@ -1,6 +1,6 @@
 require('dotenv').config()
 
-const uri = 'mongodb+srv://doadmin:U10AzWHN95l238Q7@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
+const uri = 'mongodb+srv://doadmin:Qh3XDw29t7S5168l@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
 const express =  require('express')
 const app = express();
 const flash = require('express-flash')

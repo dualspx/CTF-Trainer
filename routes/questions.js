@@ -12,7 +12,7 @@ const path = require('path')
 const multer = require('multer')
 const {GridFsStorage} = require('multer-gridfs-storage')
 var Question = require('../models/questions')
-const uri = 'mongodb+srv://doadmin:U10AzWHN95l238Q7@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
+const uri = 'mongodb+srv://doadmin:Qh3XDw29t7S5168l@ctf-learn-6650c479.mongo.ondigitalocean.com/admin?tls=true&authSource=admin'
 express().use(cookieParser())
 const Grid = require('gridfs-stream');
 const conn = mongoose.createConnection(uri, { useNewUrlParser: true });
@@ -157,7 +157,7 @@ router.post('/submit_answer/:id',authenticateToken, async(req,res) => {
         user.score.cryptography += question.marks
         await user.save()
       }
-      else if(question.type == 'forensics'){
+      else if(question.type == 'forensic'){
         user.solved.forensics += 1
         user.score.forensics += question.marks
         await user.save()
